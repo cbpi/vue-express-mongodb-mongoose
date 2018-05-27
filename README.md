@@ -1,10 +1,8 @@
-# drakevue
-
-> A Vue.js text
+# vue+express+mongodb实现前后台相通
+***
 
 ## Build Setup
-
-``` bash
+```
 安装依赖
 npm install
 
@@ -17,3 +15,4 @@ npm run dev
 # 打包
 npm run build
 ```
+
