@@ -1,6 +1,5 @@
-// 可能是我的node版本问题，不用严格模式使用ES6语法会报错
 "use strict";
-const models = require('./db');
+const db = require('./db');
 const peopleinfomodels = require('../models/peopleinfo');
 const express = require('express');
 const router = express.Router();
@@ -41,7 +40,7 @@ router.delete('/api/deleteByid/:id', (req, res) => {
   // 查找所有人物信息的方法
   peopleinfomodels.findOneAndRemove({_id: req.params.id}, function(err, res) {
     if (!err) {
-      
+
     }
   })
   res.sendStatus(200)
