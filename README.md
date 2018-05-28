@@ -1,24 +1,3 @@
----
-title: vue+nodejs+express+mongodb+mongoose实现前后端的互通
-date: 2018-05-24 20:46:57
-tags:
-- vue
-- nodejs
-- express
-- mongodb
-- mongoose
-categories:
-- javascript
----
-
-由于自己用的是macOS系统，已经安装了node环境，安装方法有两种：
-
-1. Homebrew安装
-`$ brew install git #安装软件包(这里是示例安装的Git版本控制)`
-
-2. 官网dmg安装
-
-
 # 准备
 用vue-cli脚手架生成生
 
@@ -46,9 +25,9 @@ index.js(服务器入口文件)
 	npm install express mongoose --save
 
 在db.js中配置配置mongodb
-	
+
 	'server/db.js'
-	
+
 	// 引入mongoose模块
 	const mongoose = require('mongoose')
 	// 连接数据库 如果不自己创建 默认生成端口号后面的名字，如这里会生成一个peopleinfo的库
@@ -60,20 +39,20 @@ index.js(服务器入口文件)
 在根目录下新建models文件夹，在该文件加下新建peopleinfo.js
 
 	'models/peopleinfo.js'
-	
+
 	// 引入mongoose模块
 	const mongoose = require('mongoose');
-	
+
 	/************** 定义模式 peopleinfoSchema **************/
 	const peopleinfoSchema = mongoose.Schema({
 	  name: String,
 	  sex: String,
 	  hobby: String
 	})
-	
+
 	/************** 定义模型 Model **************/
 	const People = mongoose.model('Peopleinfo', peopleinfoSchema)
-	
+
 	module.exports = People
 
 直接用node来操作数据库比较繁琐，一般推荐使用'mongoose'这个第三方模块来对数据库进行增删改查，关于mongoose中Schemas，Models的概念可以在官方网站上阅读
@@ -177,7 +156,7 @@ console.log('success listen…………')
 打开更目录下的package.json文件，找到"script"这个选项，添加一条命令
 
 	"server": "node server/index.js"
-	
+
 在终端中执行 'npm run server'来启动本地后台。在这之前确保本地已经安装了MongoDB，并且已经启动。
 链接数据库成功后终端会有这样的提示：
 
@@ -186,8 +165,3 @@ console.log('success listen…………')
 到这一步，后台的配置算是结束了。
 
 ---
-
-
-
-
-
