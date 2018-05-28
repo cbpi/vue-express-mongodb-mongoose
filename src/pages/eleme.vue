@@ -9,14 +9,14 @@
             </el-table-column>
             <el-table-column label="操作">
                 <template slot-scope="scope">
-                    <el-button size="small" type="success">更新</el-button>
-                    <el-button size="small" type="info" @click="showDetail(scope.row)">详情</el-button>
+                    <el-button size="small" type="success" @click="updateCurrent(scope.row)">更新</el-button>
+                    <el-button size="small" type="info">详情</el-button>
                     <el-button size="small" type="danger" @click="deleteByid(scope.row['_id'])">删除</el-button>
                 </template>
             </el-table-column>
         </el-table>
-        <!-- Form -->
-        <el-button class="primary" @click="dialogFormVisible = true">添加</el-button>
+        <!-- Create Form -->
+        <el-button class="primary" @click="showCreateform">添加</el-button>
         <el-dialog title="个人信息" :visible.sync="dialogFormVisible">
             <el-form :model="form">
                 <el-form-item label="姓名" :label-width="formLabelWidth">
@@ -34,6 +34,24 @@
                 <el-button type="primary" @click="savePeopleinfo">确 定</el-button>
             </div>
         </el-dialog>
+        <!-- Update Form -->
+        <el-dialog title="更新个人信息" :visible.sync="updatedialogFormVisible" class="updateform">
+            <el-form :model="updateform">
+                <el-form-item label="姓名" :label-width="formLabelWidth">
+                    <el-input v-on:input ="inputFunc" v-model="updateform.name" auto-complete="off"></el-input>
+                </el-form-item>
+                <el-form-item label="性别" :label-width="formLabelWidth">
+                    <el-input v-model="updateform.sex" auto-complete="off"></el-input>
+                </el-form-item>
+                <el-form-item label="爱好" :label-width="formLabelWidth">
+                    <el-input v-model="updateform.hobby" auto-complete="off"></el-input>
+                </el-form-item>
+            </el-form>
+            <div slot="footer" class="dialog-footer">
+                <el-button @click="updatedialogFormVisible = false">取 消</el-button>
+                <el-button type="primary" @click="saveUpdate">确 定</el-button>
+            </div>
+        </el-dialog>
     </div>
 </template>
 
@@ -46,10 +64,17 @@
                 tableData: [],
                 dialogTableVisible: false,
                 dialogFormVisible: false,
+                updatedialogFormVisible: false,
                 form: {
                     name:'',
                     sex: '',
                     hobby: ''
+                },
+                updateform: {
+                    name:'',
+                    sex: '',
+                    hobby: '',
+                    _id: '',
                 },
                 formLabelWidth: '120px',
             }
@@ -57,7 +82,6 @@
         created: function () {
             axios.get('/api/getallinfo')
              .then( (res)=>{
-                 console.log(res)
                  this.tableData = res.data
              })
              .catch((err)=> {
@@ -65,7 +89,15 @@
              })
         },
         methods: {
-            savePeopleinfo () {
+            showCreateform () { // 打开新增表单
+                this.form = {
+                    name:'',
+                    sex: '',
+                    hobby: ''
+                },
+                this.dialogFormVisible = true
+            },
+            savePeopleinfo () { // 保存新增数据
                 let params = {
                     name: this.form.name,
                     sex: this.form.sex,
@@ -78,14 +110,6 @@
                         message: '新增成功',
                         type: 'success'
                     })
-                    axios.get('/api/getallinfo')
-                        .then( (res)=>{
-                            console.log(res)
-                            this.tableData = res.data
-                        })
-                        .catch((err)=> {
-                            console.log(err)
-                        })
                  })
                  .catch(function (err) {
                     console.log(err)
@@ -99,21 +123,36 @@
                         message: '删除成功',
                         type: 'success'
                     })
-                    axios.get('/api/getallinfo')
-                        .then( (res)=>{
-                            console.log(res)
-                            this.tableData = res.data
-                        })
-                        .catch((err)=> {
-                            console.log(err)
-                        })
                  })
                  .catch((err) => {
                      console.log(err)
                  })
             },
-            showDetail (row) {
-                console.log(row)
+            updateCurrent (row) { // 更新当前选择的信息
+                this.updateform = Object.assign({}, row)
+                this.updatedialogFormVisible = true
+            },
+            saveUpdate () { // 保存修改
+                var _id = this.updateform._id
+                let params = {
+                    name: this.updateform.name,
+                    sex: this.updateform.sex,
+                    hobby: this.updateform.hobby,
+                }
+                axios.post(`/api/updateByid/${_id}`, params)
+                 .then((res) => {
+                     this.updatedialogFormVisible = false
+                     this.$message({
+                        message: '更新成功',
+                        type: 'success'
+                    })
+                 })
+                 .catch((err) => {
+                     console.log(err)
+                 })
+            },
+            inputFunc () {
+                console.log(this.tableData)
             }
         }
     }

@@ -44,7 +44,31 @@ router.delete('/api/deleteByid/:id', (req, res) => {
     }
   })
   res.sendStatus(200)
+})
 
+// 更新 根据id更新对应人物信息
+router.post('/api/updateByid/:id', (req, res) => {
+  peopleinfomodels.findByIdAndUpdate(
+    {
+      _id: req.params.id
+    }, 
+    {
+      name: req.body.name,
+      sex: req.body.sex,
+      hobby: req.body.hobby
+    },
+    {
+      new: true
+    },
+    function (err, res) {
+      if (err) {
+        console.log("Error:" + err);
+      } else {
+        console.log("Res:" + res);
+      }
+    }
+  )
+  res.sendStatus(200)
 })
 
 module.exports = router;
