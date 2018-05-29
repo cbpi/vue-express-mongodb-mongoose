@@ -38,7 +38,7 @@
         <el-dialog title="更新个人信息" :visible.sync="updatedialogFormVisible" class="updateform">
             <el-form :model="updateform">
                 <el-form-item label="姓名" :label-width="formLabelWidth">
-                    <el-input v-on:input ="inputFunc" v-model="updateform.name" auto-complete="off"></el-input>
+                    <el-input v-model="updateform.name" auto-complete="off"></el-input>
                 </el-form-item>
                 <el-form-item label="性别" :label-width="formLabelWidth">
                     <el-input v-model="updateform.sex" auto-complete="off"></el-input>
@@ -150,9 +150,6 @@
                  .catch((err) => {
                      console.log(err)
                  })
-            },
-            inputFunc () {
-                console.log(this.tableData)
             }
         }
     }
