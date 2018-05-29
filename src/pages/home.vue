@@ -110,6 +110,13 @@
                         message: '新增成功',
                         type: 'success'
                     })
+                    axios.get('/api/getallinfo')
+                     .then( (res)=>{
+                        this.tableData = res.data
+                     })
+                     .catch((err)=> {
+                        console.log(err)
+                     })
                  })
                  .catch(function (err) {
                     console.log(err)
@@ -123,6 +130,13 @@
                         message: '删除成功',
                         type: 'success'
                     })
+                    axios.get('/api/getallinfo')
+                     .then( (res)=>{
+                        this.tableData = res.data
+                     })
+                     .catch((err)=> {
+                        console.log(err)
+                     })
                  })
                  .catch((err) => {
                      console.log(err)
@@ -146,6 +160,13 @@
                         message: '更新成功',
                         type: 'success'
                     })
+                    axios.get('/api/getallinfo')
+                     .then( (res)=>{
+                        this.tableData = res.data
+                     })
+                     .catch((err)=> {
+                        console.log(err)
+                     })
                  })
                  .catch((err) => {
                      console.log(err)
