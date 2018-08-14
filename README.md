@@ -160,7 +160,7 @@ console.log('success listen…………')
 在终端中执行 'npm run server'来启动本地后台。在这之前确保本地已经安装了MongoDB，并且已经启动。
 链接数据库成功后终端会有这样的提示：
 
-![image](https://drakecb.me/markdown/images/2.png)   
+![image](http://pdfetjd6h.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202018-08-14%20%E4%B8%8A%E5%8D%888.55.47.png)   
 
 到这一步，后台的配置算是结束了。
 
