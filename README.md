@@ -160,8 +160,10 @@ console.log('success listen…………')
 在终端中执行 'npm run server'来启动本地后台。在这之前确保本地已经安装了MongoDB，并且已经启动。
 链接数据库成功后终端会有这样的提示：
 
-![image](http://pdfetjd6h.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202018-08-14%20%E4%B8%8A%E5%8D%888.55.47.png)   
+![image](http://pdfetjd6h.bkt.clouddn.com/mongooseimg1.png)   
 
 到这一步，后台的配置算是结束了。
 
+
+[这里](https://drakecb.cn/javascript/2018/05/25/node+express+vue+mongodb%E5%AE%9E%E7%8E%B0%E5%89%8D%E5%90%8E%E7%AB%AF%E4%BA%A4%E4%BA%92.html)有详细的步骤
 ---
