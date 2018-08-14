@@ -18,7 +18,7 @@ index.js(服务器入口文件)
 
 这个三个文件
 
-![image](https://drakecb.me/markdown/images/1.png)
+![image](http://pdfetjd6h.bkt.clouddn.com/mongooseimg2.png)
 
 安装express，mongoose模块
 
